@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="InsertNewCustomer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="newCustomer" type="tns:CustomerBO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CustomerBO">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CustomerId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="grade" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SalesmanId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertNewCustomerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertNewCustomerResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateCustomerInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="newCustomer" type="tns:CustomerBO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateCustomerInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateCustomerInfoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="InsertNewCustomerSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertNewCustomer" />
+  </wsdl:message>
+  <wsdl:message name="InsertNewCustomerSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertNewCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCustomerInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateCustomerInfo" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCustomerInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateCustomerInfoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CustomerWebServiceSoap">
+    <wsdl:operation name="InsertNewCustomer">
+      <wsdl:input message="tns:InsertNewCustomerSoapIn" />
+      <wsdl:output message="tns:InsertNewCustomerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCustomerInfo">
+      <wsdl:input message="tns:UpdateCustomerInfoSoapIn" />
+      <wsdl:output message="tns:UpdateCustomerInfoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CustomerWebServiceSoap" type="tns:CustomerWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertNewCustomer">
+      <soap:operation soapAction="http://tempuri.org/InsertNewCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCustomerInfo">
+      <soap:operation soapAction="http://tempuri.org/UpdateCustomerInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CustomerWebServiceSoap12" type="tns:CustomerWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertNewCustomer">
+      <soap12:operation soapAction="http://tempuri.org/InsertNewCustomer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCustomerInfo">
+      <soap12:operation soapAction="http://tempuri.org/UpdateCustomerInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CustomerWebService">
+    <wsdl:port name="CustomerWebServiceSoap" binding="tns:CustomerWebServiceSoap">
+      <soap:address location="https://localhost:44356/CustomerWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CustomerWebServiceSoap12" binding="tns:CustomerWebServiceSoap12">
+      <soap12:address location="https://localhost:44356/CustomerWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

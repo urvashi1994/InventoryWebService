@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="InsertNewOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="newOrder" type="tns:OrdersBO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="OrdersBO">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OrderNo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PurchAmt" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CustomerId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SalesmanId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertNewOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertNewOrderResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateOrdersInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="newOrder" type="tns:OrdersBO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateOrdersInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateOrdersInfoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteOrdersInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="newOrder" type="tns:OrdersBO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteOrdersInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteOrdersInfoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="InsertNewOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertNewOrder" />
+  </wsdl:message>
+  <wsdl:message name="InsertNewOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertNewOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateOrdersInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateOrdersInfo" />
+  </wsdl:message>
+  <wsdl:message name="UpdateOrdersInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateOrdersInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteOrdersInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteOrdersInfo" />
+  </wsdl:message>
+  <wsdl:message name="DeleteOrdersInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteOrdersInfoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="OrdersWebServiceSoap">
+    <wsdl:operation name="InsertNewOrder">
+      <wsdl:input message="tns:InsertNewOrderSoapIn" />
+      <wsdl:output message="tns:InsertNewOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrdersInfo">
+      <wsdl:input message="tns:UpdateOrdersInfoSoapIn" />
+      <wsdl:output message="tns:UpdateOrdersInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrdersInfo">
+      <wsdl:input message="tns:DeleteOrdersInfoSoapIn" />
+      <wsdl:output message="tns:DeleteOrdersInfoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="OrdersWebServiceSoap" type="tns:OrdersWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertNewOrder">
+      <soap:operation soapAction="http://tempuri.org/InsertNewOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrdersInfo">
+      <soap:operation soapAction="http://tempuri.org/UpdateOrdersInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrdersInfo">
+      <soap:operation soapAction="http://tempuri.org/DeleteOrdersInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="OrdersWebServiceSoap12" type="tns:OrdersWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertNewOrder">
+      <soap12:operation soapAction="http://tempuri.org/InsertNewOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrdersInfo">
+      <soap12:operation soapAction="http://tempuri.org/UpdateOrdersInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrdersInfo">
+      <soap12:operation soapAction="http://tempuri.org/DeleteOrdersInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OrdersWebService">
+    <wsdl:port name="OrdersWebServiceSoap" binding="tns:OrdersWebServiceSoap">
+      <soap:address location="https://localhost:44356/OrdersWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="OrdersWebServiceSoap12" binding="tns:OrdersWebServiceSoap12">
+      <soap12:address location="https://localhost:44356/OrdersWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
